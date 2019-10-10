@@ -2,3 +2,4 @@
 *.LICENSE linguist-vendored
 *.conf linguist-vendored
 *.css linguist-vendored
+*.vue linguist-vendored
