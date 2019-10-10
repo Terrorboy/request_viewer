@@ -1,0 +1,4 @@
+*.md linguist-vendored
+*.LICENSE linguist-vendored
+*.conf linguist-vendored
+*.css linguist-vendored
