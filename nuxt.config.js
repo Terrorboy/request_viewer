@@ -32,7 +32,8 @@ module.exports = {
         { src: '/js/bootstrap.bundle.min.js' },
         { src: '/js/pasteimage.js' },
         { src: '/js/html2canvas.min.js' },
-        { src: '/js/jquery.json-view.min.js' }
+        { src: '/js/jquery.json-view.min.js' },
+        { src: '/js/push.min.js' }
     ]
   },
   /*

@@ -8,7 +8,7 @@
           <div class="input-group">
             <input type="text" v-bind:value="channel" class="form-control" disabled="disabled">
             <div class="input-group-append">
-              <button type="button" class="btn btn-secondary" disabled="disabled" style="z-index:1"><i class="fe fe-user"></i></button>
+              <button type="button" class="btn btn-secondary" disabled="disabled" style="z-index:1"><i class="fe fe-user js_push"></i></button>
             </div>
           </div>
         </div>
@@ -111,7 +111,8 @@ export default {
     return {
       channel: this.$route.params.channel,
       socket_url: '',
-      logs: []
+      logs: [],
+      push: false
     }
   },
   mounted: function(e) {
@@ -141,7 +142,14 @@ export default {
       var RTarget = document.createElement('div')
       var Rlog = []
 
-      console.log(RData);
+      if(su.push === true) {
+        Push.create('Request Viewer', {
+            body: RData,
+            icon: '/favicon.ico',
+            timeout: 4000
+        });
+        console.log(RData);
+      }
       $(RTarget).jsonView(RData)
       JData.data = $(RTarget).html()
 
@@ -166,6 +174,22 @@ export default {
       });
       e.preventDefault()
       return false
+    });
+    
+    // push
+    $(document).on('click', '.js_push', function(e) {
+      e.preventDefault();
+      var pushed = $(this).hasClass('push_active');
+      if(pushed === true) {
+        $(this).removeClass('push_active');
+        su.push = false;
+        alert('push 알림이 종료되었습니다.');
+      }
+      else {
+        $(this).addClass('push_active');
+        su.push = true;
+        alert('push 알림이 시작되었습니다.\n알림 허용이 안된 경우 허용 후 이용 가능합니다.');
+      }
     });
   }
 }

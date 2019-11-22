@@ -2,11 +2,18 @@ const consola = require('consola')
 const Hapi = require('@hapi/hapi')
 const HapiNuxt = require('@nuxtjs/hapi')
 const DateUtils = require('date-utils')
+const fs = require('fs')
 
 async function start () {
+  const options = {
+  	  key: fs.readFileSync('/etc/letsencrypt/live/z9n.net/privkey.pem')
+  	, cert: fs.readFileSync('/etc/letsencrypt/live/z9n.net/cert.pem')
+  	, ca: fs.readFileSync('/etc/letsencrypt/live/z9n.net/chain.pem')
+  }
+
   const server = new Hapi.Server({
-    host: process.env.HOST || '127.0.0.1',
-    port: process.env.PORT || 3000
+    port: process.env.PORT || 7777,
+    tls: options
   })
 
   await server.register({

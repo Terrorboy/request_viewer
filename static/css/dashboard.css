@@ -18608,3 +18608,7 @@ svg {
 .fe-zoom-out:before {
   content: "\ea06";
 }
+
+.push_active {
+  color:#00A2E8;
+}
